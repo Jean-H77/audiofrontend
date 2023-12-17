@@ -41,6 +41,7 @@ function App() {
             console.log(responseUpload.data);
             const responseInsert = await axios.post(urlInsert, responseUpload.data);
             console.log("Response from server: " + JSON.stringify(responseInsert.data));
+            fetchResponses();
         } catch (error) {
             console.error("Error while inserting:", error);
         }
@@ -85,17 +86,22 @@ function App() {
             <div className="container mt-5">
                 <div className="row justify-content-center">
                     <div className="col-md-8">
-                        <h2 className="mb-3">All Files</h2>
                         <table className="table">
                             <thead>
                             <tr>
                                 <th>File Name:</th>
+                                <th>overall_tempo</th>
+                                <th>peak_1</th>
+                                <th>peak_2</th>
                             </tr>
                             </thead>
                             <tbody>
                             {previousResponses.map((file, index) => (
                                 <tr key={index}>
                                     <td>{file.filename}</td>
+                                    <td>{file.overall_tempo}</td>
+                                    <td>{file.peak_1}</td>
+                                    <td>{file.peak_2}</td>
                                 </tr>
                             ))}
                             </tbody>
